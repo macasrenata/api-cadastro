@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "api-cadastro"
+version = "0.1.0"
+description = "Cadastro"
+authors = ["Renata Maçãs <renata.macas@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.100.0"
+uvicorn = "^0.21.1"
+httpx = "^0.27"
+pytest = "^8.0.0"
+pydantic = "2.5.2"
+pydantic-settings = "2.1.0"
+phonenumbers = "^8.13.47"
+geopy = "^2.4.1"
+pytest-httpx = "^0.32.0"
+sqlalchemy = "^2.0.36"
+alembic = "^1.13.3"
+psycopg = "^3.2.3"
+requests = "^2.32.3"
+psycopg2-binary = "^2.9.10"
+
+[tool.poetry.dev-dependencies]
+httpx = "^0.27"
+pytest = "^8.0.0"
+coverage = "^7.3.2"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.12.0"
+
+[tool.poetry.scripts]
+api-cadastro = "app.main:app"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+python_files = ["test_*.py", "spec_*.py"]
+norecursedirs = [".git", ".pytest_cache"]
+addopts = """
+  --color=yes
+  --verbose
+  --cov-report term-missing:skip-covered
+  --cov-report xml
+  --cov app
+"""
+
+[tool.coverage.run]
+branch = true
+source = ["app"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
+precision = 2
